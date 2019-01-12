@@ -489,6 +489,13 @@
 	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
 	if(mind)
+		if(client.prefs.relations.len) //DeepSpace13 - Allows for matchmaking
+			for(var/T in client.prefs.relations)
+				var/TT = SSjob.matchmaker.relation_types[T]
+				var/datum/relation/R = new TT
+				R.holder = mind
+				R.info = client.prefs.relations_info[T]
+			mind.gen_relations_info = client.prefs.relations_info["general"]
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = 0					//we wish to transfer the key manually

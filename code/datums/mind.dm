@@ -36,6 +36,8 @@
 	var/active = 0
 
 	var/memory
+	var/list/known_connections //DeepSpace13 - List of known RNG connections between people
+	var/gen_relations_info
 
 	var/assigned_role
 	var/special_role

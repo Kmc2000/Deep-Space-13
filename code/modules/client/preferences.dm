@@ -186,6 +186,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<center><h2>Quirk Setup</h2>"
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
+			dat += "<center><h2>Relationships</h2>" //DeepSpace13 - Relations
+			dat += "<a href='?_src_=prefs;preference=relations;task=menu'>Configure Relations</a><br></center>"
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
 			if(is_banned_from(user.ckey, "Appearance"))
@@ -990,6 +992,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				SetChoices(user)
 		return 1
+
+	else if(href_list["preference"] == "relations")
+		to_chat(world, "yes")
+		switch(href_list["task"])
+			if("togglerelation")
+				to_chat(world, "yes2")
+				var/R = href_list["relationtochange"]
+				relations ^= R
+				return
+			if("setrelationdesc")
+				to_chat(world, "yes22")
+				if(href_list["relation_info"]) //not getting this far
+					to_chat(world, "yeseee")
+					var/datum/relation/R = href_list["relation_info"]
+					var/info = sanitize(input(user,"Character info", "What would you like this [R.name] to know about your character?",relations_info[R]) as null|text)
+					if(info)
+						relations_info[R] = info
+					return
+		set_relations(user)
+
 
 	else if(href_list["preference"] == "trait")
 		switch(href_list["task"])

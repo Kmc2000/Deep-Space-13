@@ -310,6 +310,8 @@ SUBSYSTEM_DEF(ticker)
 
 //These callbacks will fire after roundstart key transfer
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
+	if(SSjob.matchmaker) //Star Trek 13 - Allows for relations system
+		SSjob.matchmaker.do_matchmaking()
 	if(!HasRoundStarted())
 		LAZYADD(round_start_events, cb)
 	else
