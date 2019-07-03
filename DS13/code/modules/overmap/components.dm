@@ -871,3 +871,16 @@
 	if(linked.health < linked.max_health && plasma_volume >= drainrate)
 		plasma_volume -= drainrate
 		linked.health += healrate
+
+/obj/structure/overmap_component/upgrade
+	name = "Generic upgrade device"
+	desc = "Upgrade me with stuff!"
+	icon_state = "shield_governor_off"
+	req_access = list(ACCESS_ENGINE_EQUIP)
+	max_integrity = 350
+	integrity_failure = 50
+
+/obj/structure/overmap_component/upgrade/engines
+	name = "Generic upgrade device"
+	desc = "Upgrade me with stuff!"
+	icon_state = "shield_governor_off"
